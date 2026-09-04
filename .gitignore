@@ -1,0 +1,39 @@
+@"
+# Node
+node_modules/
+frontend/node_modules/
+dist/
+dist-ssr/
+
+# Python
+venv/
+.venv/
+backend/venv/
+backend/.venv/
+__pycache__/
+*.pyc
+
+# Environment / secrets
+.env
+.env.*
+backend/.env
+
+# Editors
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Generated OCR output
+backend/documents/processed/
+
+# Local knowledge base / databases
+backend/knowledge_base/
+backend/backend/auth/users.sqlite3
+"@ | Set-Content -Path .\.gitignore
