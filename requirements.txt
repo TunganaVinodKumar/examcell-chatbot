@@ -1,180 +1,38 @@
 # ============================================================
 # CAPSTONE - Python Backend Requirements
 # Python: 3.11
-#
-# INSTALL:
-#   python -m pip install -r ..\CAPSTONE_requirements_final.txt
-#
-# IMPORTANT:
-# - This file intentionally does NOT pin transitive dependencies
-#   such as cffi, backoff, pydantic-core, starlette, httpcore, etc.
-# - Do not add a second copy of the same package elsewhere in this file.
-# - pikepdf appears only once.
-# - pypdfium2 appears only once.
 # ============================================================
 
-
-# ============================================================
-# CORE / WEB
-# ============================================================
-streamlit==1.40.1
-requests==2.32.4
-python-dotenv==1.0.1
-Django==4.2.21
-Flask==3.0.3
+# ------------------------------------------------------------
+# CORE / FASTAPI WEB SERVER
+# ------------------------------------------------------------
 fastapi==0.124.0
 uvicorn==0.33.0
+pydantic>=2.0.0
+python-multipart>=0.0.18
+python-dotenv==1.0.1
 
-
-# ============================================================
+# ------------------------------------------------------------
 # LLM / AI
-# ============================================================
+# ------------------------------------------------------------
 groq==0.33.0
-anthropic==0.72.0
+
+# ------------------------------------------------------------
+# EMBEDDINGS & VECTOR DATABASE
+# ------------------------------------------------------------
 sentence-transformers==3.2.1
-transformers==4.46.3
 torch==2.4.1
-huggingface-hub==0.36.0
-tokenizers==0.20.3
-safetensors==0.5.3
-
-
-# ============================================================
-# EMBEDDINGS / MACHINE LEARNING
-# ============================================================
 numpy==1.24.4
-scikit-learn==1.3.2
-scipy==1.10.1
-joblib==1.4.2
-threadpoolctl==3.5.0
-faiss-cpu==1.8.0.post1
-nltk==3.8.1
-matplotlib==3.7.5
-seaborn==0.13.2
-networkx==3.1
-sympy==1.13.0
-mpmath==1.3.0
-
-
-# ============================================================
-# VECTOR DATABASE
-# ============================================================
 chromadb==0.5.23
-chroma-hnswlib==0.7.6
-mmh3==5.0.1
-PyPika==0.48.9
 
-
-# ============================================================
-# OCR / PDF / DOCUMENT PROCESSING
-#
-# pikepdf is intentionally NOT pinned to one exact patch
-# version because the previous requirements file contained
-# conflicting pikepdf versions.
-#
-# PyMuPDF is written with the correct version syntax.
-# ============================================================
-ocrmypdf==14.4.0
-pytesseract==0.3.13
-PyMuPDF==1.24.11
+# ------------------------------------------------------------
+# DOCUMENT PROCESSING & OCR
+# ------------------------------------------------------------
 pdfplumber==0.11.5
-pdf2image==1.17.0
-pdfminer.six==20231228
-pikepdf>=8.15.1,<10
-pillow==10.4.0
-img2pdf==0.6.3
-reportlab==4.4.3
-PyPDF2==3.0.1
-pypdfium2>=5.3.0,<6
 python-docx==1.1.2
-lxml==6.0.2
-
-
-# ============================================================
-# SECURITY / AUTH
-#
-# cffi is intentionally NOT listed here.
-# cryptography installs the compatible cffi dependency itself.
-# ============================================================
-bcrypt==5.0.0
-cryptography==46.0.3
-rsa==4.9.1
-
-
-# ============================================================
-# HTTP / DATA
-# ============================================================
-httpx==0.28.1
-urllib3==2.2.3
-certifi==2025.11.12
-charset-normalizer==3.4.4
-websockets==13.1
-pandas==2.0.3
-pyarrow==17.0.0
-altair==5.4.1
-pydeck==0.9.1
-protobuf==5.29.5
-cachetools==5.5.2
-watchdog==4.0.2
-
-
-# ============================================================
-# DJANGO / WEB SUPPORT
-# ============================================================
-Jinja2==3.1.6
-MarkupSafe==2.1.5
-Werkzeug==3.0.6
-itsdangerous==2.2.0
-sqlparse==0.5.3
-
-
-# ============================================================
-# UTILITIES
-#
-# backoff is intentionally NOT pinned here.
-# Some packages (for example PostHog-related dependencies)
-# require a newer backoff than the old pin.
-# ============================================================
-regex==2024.11.6
-tqdm==4.67.1
-six==1.17.0
-rich==13.9.4
-PyYAML==6.0.3
-toml==0.10.2
-tenacity==9.0.0
-Deprecated==1.3.1
-deprecation==2.1.0
-distro==1.9.0
-docstring_parser==0.17.0
-jiter==0.9.1
-monotonic==1.6
-Pygments==2.19.2
-mdurl==1.1.0
-markdown-it-py==3.0.0
-narwhals==1.42.0
-pluggy==1.5.0
-python-dateutil==2.9.0.post0
-pytz==2025.2
-
-
-# ============================================================
-# AFTER INSTALLATION - CHECK
-# ============================================================
-# python -m pip check
-#
-# If pip check reports a missing dependency, install the
-# dependency named by pip rather than adding random packages
-# to this file.
-#
-# For the CAPSTONE backend:
-#   cd V:\Projects\CAPSTONE\backend
-#   .\venv\Scripts\Activate.ps1
-#   python -m uvicorn chat_api:app --reload
-#
-# Frontend:
-#   cd V:\Projects\CAPSTONE\frontend
-#   npm install
-#   npm run dev
-#
-# Keep the Groq API key in backend\.env.
-# Never put the API key directly into source code.
+PyMuPDF==1.24.11
+pillow==10.4.0
+pytesseract==0.3.13
+ocrmypdf==14.4.0
+pikepdf>=8.15.1,<10
+opencv-python-headless<4.10.0
