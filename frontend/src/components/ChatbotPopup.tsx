@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, User, FileText, Sparkles } from "lucide-react";
 import botImage from "../assets/R.jpg";
 
-const DEFAULT_API_BASE = "http://localhost:8000";
+const DEFAULT_API_BASE =
+  import.meta.env.VITE_API_BASE || "https://examcell-chatbot.onrender.com";
 
 interface ChatbotPopupProps {
   chatbotUrl?: string;

@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8000";
+const API_BASE =
+  import.meta.env.VITE_API_BASE || "https://examcell-chatbot.onrender.com";
 
 const ExamcellLogin = () => {
   const navigate = useNavigate();
