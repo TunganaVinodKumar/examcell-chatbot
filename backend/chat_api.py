@@ -56,6 +56,16 @@ class LoginRequest(BaseModel):
     password: str
 
 
+@app.get("/")
+def root():
+    return {
+        "status": "ok",
+        "message": "NSRIT Exam Cell Chatbot API is running live on Render",
+        "docs": "/docs",
+        "health": "/health"
+    }
+
+
 @app.get("/health")
 def health():
     return {"status": "ok"}
@@ -323,13 +333,20 @@ def download(file: str):
     if ext not in allowed_types:
         raise HTTPException(status_code=400, detail="Invalid file type")
 
-    for file_path in DOCUMENTS_FOLDER.rglob(decoded_filename):
-        if file_path.is_file():
-            return FileResponse(
-                path=file_path,
-                filename=file_path.name,
-                media_type=allowed_types[ext]
-            )
+    search_folders = [
+        BASE_DIR / "documents" / "processed",
+        BASE_DIR / "documents" / "original",
+    ]
+
+    for folder in search_folders:
+        if folder.exists():
+            for file_path in folder.rglob(decoded_filename):
+                if file_path.is_file():
+                    return FileResponse(
+                        path=file_path,
+                        filename=file_path.name,
+                        media_type=allowed_types[ext]
+                    )
 
     raise HTTPException(status_code=404, detail="File not found")
 

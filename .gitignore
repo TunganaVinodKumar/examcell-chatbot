@@ -34,5 +34,5 @@ desktop.ini
 backend/documents/processed/
 
 # Local knowledge base / databases
-backend/knowledge_base/
+backend/knowledge_base/chroma/
 backend/backend/auth/users.sqlite3
