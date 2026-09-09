@@ -18,10 +18,11 @@ python-dotenv==1.0.1
 groq==0.33.0
 
 # ------------------------------------------------------------
-# EMBEDDINGS & VECTOR DATABASE
+# EMBEDDINGS & VECTOR DATABASE (CPU-optimized for 512MB RAM)
 # ------------------------------------------------------------
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch
 sentence-transformers==3.2.1
-torch==2.4.1
 numpy==1.24.4
 chromadb==0.5.23
 

@@ -71,13 +71,23 @@ def load_chunk_metadata():
 
 
 # --------------------------------------------------
-# EMBEDDING MODEL
+# EMBEDDING MODEL (LAZY LOADED FOR 512MB RAM COMPLIANCE)
 # --------------------------------------------------
 EMBEDDING_MODEL_NAME = "all-MiniLM-L6-v2"
-model = SentenceTransformer(
-    EMBEDDING_MODEL_NAME,
-    device="cuda" if torch.cuda.is_available() else "cpu"
-)
+_model = None
+
+try:
+    torch.set_num_threads(1)
+except Exception:
+    pass
+
+
+def get_embedding_model():
+    global _model
+    if _model is None:
+        device = "cuda" if torch.cuda.is_available() else "cpu"
+        _model = SentenceTransformer(EMBEDDING_MODEL_NAME, device=device)
+    return _model
 
 
 # --------------------------------------------------
@@ -225,7 +235,7 @@ def store_document(chunks: List[str], source_path: str, doc_tags: dict = None) -
     doc_id = str(uuid.uuid4())
     doc_tags = doc_tags or {}
 
-    embeddings = model.encode(chunks).tolist()
+    embeddings = get_embedding_model().encode(chunks).tolist()
 
     collection = get_chroma_collection()
     if collection is not None:
@@ -901,7 +911,7 @@ def lexical_search_chunks(query: str, top_k: int = 30):
 def retrieve_relevant_chunks(query: str, top_k: int = 20):
     try:
         normalized_query = normalize_query(query)
-        query_embedding = model.encode([normalized_query]).tolist()[0]
+        query_embedding = get_embedding_model().encode([normalized_query]).tolist()[0]
     except Exception:
         return []
 
