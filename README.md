@@ -48,15 +48,15 @@
 
 ```mermaid
 graph TD
-    A[Student / User] -->|Queries UI| B[React + Vite Frontend (Render)]
-    B -->|REST API Requests| C[FastAPI Server (Railway)]
-    C -->|Vector Similarity Query| D[(SQLite Vector Store & ChromaDB)]
-    C -->|Top Matching Context| E[Groq LLM Engine]
+    A["Student / User"] -->|Queries UI| B["React + Vite Frontend (Render)"]
+    B -->|REST API Requests| C["FastAPI Server (Railway)"]
+    C -->|Vector Similarity Query| D[("SQLite Vector Store & ChromaDB")]
+    C -->|Top Matching Context| E["Groq LLM Engine"]
     E -->|Structured Accurate Response| C
     C -->|JSON Payload + Citations| B
-    F[Exam Cell Admin] -->|Uploads Circulars| C
-    C -->|Extract & OCR| G[PDFPlumber / Tesseract]
-    G -->|Text Chunker| H[all-MiniLM-L6-v2 Embeddings]
+    F["Exam Cell Admin"] -->|Uploads Circulars| C
+    C -->|Extract & OCR| G["PDFPlumber / Tesseract"]
+    G -->|Text Chunker| H["all-MiniLM-L6-v2 Embeddings"]
     H -->|Persist Embeddings| D
 ```
 
