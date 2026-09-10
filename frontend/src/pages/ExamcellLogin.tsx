@@ -4,7 +4,7 @@ import { ShieldCheck } from "lucide-react";
 import Header from "@/components/Header";
 
 const API_BASE =
-  import.meta.env.VITE_API_BASE || "https://examcell-chatbot.onrender.com";
+  import.meta.env.VITE_API_BASE || "https://examcell-chatbot-production.up.railway.app";
 
 const ExamcellLogin = () => {
   const navigate = useNavigate();

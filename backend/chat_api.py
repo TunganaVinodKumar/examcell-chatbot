@@ -63,7 +63,7 @@ class LoginRequest(BaseModel):
 def root():
     return {
         "status": "ok",
-        "message": "NSRIT Exam Cell Chatbot API is running live on Render",
+        "message": "NSRIT Exam Cell Chatbot API is running live",
         "docs": "/docs",
         "health": "/health"
     }
